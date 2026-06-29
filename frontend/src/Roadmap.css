@@ -1,0 +1,27 @@
+.roadmap-container { padding: 20px; color: var(--text-main); }
+
+.grid-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+
+.card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+
+.generate-btn { 
+  width: 100%; padding: 15px; background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+  border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; margin-bottom: 30px;
+}
+
+/* Timeline */
+.timeline { position: relative; border-left: 2px solid var(--border-color); margin-left: 20px; padding-left: 20px; }
+
+.timeline-item { margin-bottom: 20px; position: relative; }
+
+.month-badge { color: var(--neon-cyan); font-weight: bold; margin-bottom: 5px; }
+
+.task-tag { 
+  display: inline-block; background: #1e293b; padding: 5px 10px; border-radius: 5px; margin-right: 5px; font-size: 0.85rem; 
+}
+
+/* Skills */
+.skills-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.skill-item { display: flex; align-items: center; gap: 5px; padding: 8px; border-radius: 6px; }
+.learned { color: #22c55e; }
+.missing { color: #ef4444; }

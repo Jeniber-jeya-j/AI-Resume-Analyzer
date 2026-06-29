@@ -1,0 +1,300 @@
+/* 1. முதன்மை கன்டெய்னர் - ஸ்க்ரோல் செய்யும்போது கட் ஆகாமல் இருக்க */
+.resume-maker {
+  background-color: #03070c;
+  color: #ffffff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  height: 100vh;            /* முழு ஸ்கிரீன் உயரத்தையும் எடுத்துக்கொள்ளும் */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;         /* மெயின் ஸ்கிரீனில் டபுள் ஸ்க்ரோல் வருவதைத் தடுக்கும் */
+}
+
+/* 2. ஸ்க்ரோல் கன்டெய்னர் - இதைத்தான் நாம் ஸ்க்ரோல் செய்ய வைக்க வேண்டும் (முக்கியமான பகுதி!) */
+.scroll-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  flex: 1;                  /* மீதமுள்ள அனைத்து உயரத்தையும் எடுத்துக்கொள்ளும் */
+  overflow-y: auto;         /* கன்டென்ட் அதிகமாகும்போது செங்குத்தாக ஸ்க்ரோல் பாரை கொண்டு வரும் */
+  padding-right: 8px;       /* ஸ்க்ரோல் பார் இன்புட்களை மறைக்காமல் இருக்க சிறிய கேப் */
+}
+
+/* 3. ஸ்க்ரோல் பார் பார்க்க அழகாக இருக்க சில கஸ்டம் ஸ்டைல் (Optional) */
+.scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3); /* சியான் நிற மெல்லிய ஸ்க்ரோல் பார் */
+  border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+}
+/* --- 2. ஹெடர் ஸ்டைல் (Header Section) --- */
+.maker-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #00E5FF 0%, #FF4FD8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- 3. கிளாஸ் கார்டு (Form Container) --- */
+.glass-card-maker {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* கலர் டெக்ஸ்ட் கிளாஸ்கள் */
+.cyan-text { color: #00E5FF; }
+.purple-text { color: #FF4FD8; }
+
+/* --- 4. இன்புட் குரூப் மற்றும் லேபிள்கள் (Inputs & Labels) --- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.input-row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.input-group label, 
+.dynamic-section-header label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a0aec0;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-icon {
+  color: #00E5FF; /* ஐகான்களுக்கு சியான் நிறம் */
+}
+
+/* சாதாரண மற்றும் டைனமிக் இன்புட் பாக்ஸ்கள் (Summary, Name, etc.) */
+.input-group input, 
+.input-group textarea,
+.dynamic-input-row textarea, 
+.dynamic-input-row input {
+  background-color: #11141a; /* நீங்கள் கேட்டபடி Summary பாக்ஸ் போன்ற டார்க் நிறம் */
+  color: #ffffff;
+  border: 1px solid #222834;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* போக்கஸ் செய்யும்போது மாறும் ஸ்டைல் (Focus State) */
+.input-group input:focus, 
+.input-group textarea:focus,
+.dynamic-input-row textarea:focus, 
+.dynamic-input-row input:focus {
+  border-color: #00E5FF;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+/* பிளேஸ்ஹோல்டர் நிறம் */
+::placeholder {
+  color: #4a5568;
+  opacity: 0.8;
+}
+
+/* --- 5. டைனமிக் செக்ஷன் & பட்டன்கள் (+ மற்றும் Trash) --- */
+.dynamic-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* ப்ளஸ் (+) பட்டன் */
+.add-set-btn {
+  background: #00E5FF;
+  border: none;
+  color: #03070c;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.add-set-btn:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+/* டைனமிக் வரிசை (Row Wrapper) */
+.dynamic-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+/* டிராஷ் / டெலிட் பட்டன் */
+.remove-set-btn {
+  background: transparent;
+  border: none;
+  color: #FF4FD8;
+  padding: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.remove-set-btn:hover {
+  background: #FF4FD8;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
+}
+
+/* --- 6. முதன்மை ஆக்ஷன் பட்டன்கள் (Generate Resume) --- */
+.action-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* ஸ்கிரீன்ஷாட்டில் உள்ள நியான் பிங்க் பட்டன் */
+.neon-purple-btn {
+  background: #FF4FD8;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(255, 79, 216, 0.4);
+}
+
+.neon-purple-btn:hover {
+  background: #ff76e2;
+  box-shadow: 0 4px 25px rgba(255, 79, 216, 0.6);
+  transform: translateY(-2px);
+}
+
+/* --- 7. பிரிவியூ ஸ்கிரீன் ஸ்டைல் (Preview Screen) --- */
+.preview-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.neon-border-cyan {
+  border: 1px solid #00E5FF;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+}
+
+.preview-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #00E5FF;
+  margin: 0 0 5px 0;
+}
+
+.preview-contact {
+  font-size: 13px;
+  color: #a0aec0;
+  margin: 0;
+}
+
+.preview-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
+}
+
+.preview-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  margin-bottom: 15px;
+}
+
+/* டவுன்லோட் பட்டன்கள் குரூப் */
+.download-actions {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.download-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.pdf-btn { background-color: #e53e3e; }
+.pdf-btn:hover { background-color: #fc8181; }
+
+.word-btn { background-color: #2b6cb0; }
+.word-btn:hover { background-color: #63b3ed; }
+
+.back-to-edit {
+  background: transparent;
+  border: 1px solid #a0aec0;
+  color: #a0aec0;
+}
+
+.back-to-edit:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
