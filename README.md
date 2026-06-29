@@ -1,12 +1,27 @@
-# Resume-Analyze
+# AI Resume Analyzer
 
-Developed an AI-powered Resume Analyzer using FastAPI and NLP techniques to extract skills, calculate ATS scores, detect missing keywords, and match resumes against job descriptions. Integrated PDF parsing, machine learning similarity scoring, and intelligent suggestions to improve resume quality.
+An AI-powered Resume Analyzer built using React.js, FastAPI, Python, and Google Gemini AI. The application analyzes resumes against job descriptions, calculates ATS scores, identifies missing skills, provides AI-powered feedback, generates resumes in PDF/Word format, and includes career guidance tools such as an AI Chatbot, Interview Preparation Assistant, Resume Maker, and Career Roadmap Generator.
+
+---
+
+## ✨ Features
+
+- AI-powered Resume Analysis
+- ATS Score Calculation
+- Resume & Job Description Matching
+- Missing Skills Detection
+- AI Feedback & Improvement Suggestions
+- Resume Builder (PDF & Word)
+- AI Career Chatbot
+- Interview Preparation Assistant
+- AI Career Roadmap Generator
+- Responsive Modern UI
 
 ---
 
 ## 📋 Prerequisites
 
-- Node.js
+- Node.js (v18+)
 - Python 3.10+
 - pip
 
@@ -17,8 +32,8 @@ Developed an AI-powered Resume Analyzer using FastAPI and NLP techniques to extr
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/Resume-Analyze.git
-cd Resume-Analyze
+git clone https://github.com/your-username/AI-Resume-Analyzer.git
+cd AI-Resume-Analyzer
 ```
 
 ### 2. Install Frontend Dependencies
@@ -33,6 +48,14 @@ npm install
 ```bash
 cd ../backend
 pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+Create a `.env` file inside the **backend** folder.
+
+```env
+GEMINI_API_KEY=AQ.Ab8RN6KHX.............
 ```
 
 ---
@@ -74,5 +97,48 @@ http://localhost:3000
 - React.js
 - FastAPI
 - Python
-- NLP
-- CSS
+- Google Gemini AI
+
+---
+
+## 📂 Project Structure
+
+```
+AI-Resume-Analyzer/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── backend/
+│   ├── main.py
+│   ├── ats_score.py
+│   ├── resume_parser.py
+│   ├── skills.py
+│   ├── requirements.txt
+│   └── .env
+│
+└── README.md
+```
+
+---
+
+## 📸 Screenshots
+
+- Dashboard
+- Resume Analyzer
+- Resume Builder
+- AI Chatbot
+- Interview Preparation
+- Career Roadmap
+- 
+
+---
+
+## 👨‍💻 Author
+
+**Jeniber Jeya**
+
+GitHub: https://github.com/Jeniber-jeya-j
+
