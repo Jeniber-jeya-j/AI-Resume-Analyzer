@@ -1,8 +1,27 @@
+:root {
+  --bg-color: #0b0f19;
+  --card-bg: #131a26;
+  --border-color: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --neon-cyan: #06b6d4;
+  --neon-purple: #a855f7;
+  --neon-pink: #ec4899;
+}
 .roadmap-container { padding: 20px; color: var(--text-main); }
+.roadmap-header {  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;}
+.grid-cards { display: grid; grid-template-columns: 2fr; gap: 15px; margin-bottom: 20px; }
 
-.grid-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);margin-bottom: 24px; }
 
-.card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+.W-card { font-size: 12px; background: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--neon-cyan);}
 
 .generate-btn { 
   width: 100%; padding: 15px; background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
@@ -25,3 +44,150 @@
 .skill-item { display: flex; align-items: center; gap: 5px; padding: 8px; border-radius: 6px; }
 .learned { color: #22c55e; }
 .missing { color: #ef4444; }
+
+.target-dropdown {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  background: #111827;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Custom Arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 5.5L8 10.3l4.8-4.8.9.9L8 12.1 2.3 6.4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+.target-dropdown:hover {
+  border-color: #3b82f6;
+}
+
+.target-dropdown:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+}
+
+/* Option Styling */
+.target-dropdown option {
+  background: #111827;
+  color: #fff;
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.profile-buttons button {
+  flex: 1;
+  min-width: 80px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #374151;
+  background: #111827;
+  color: #d1d5db;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-buttons button:hover {
+  border-color: #3b82f6;
+  background: #1e293b;
+  color: #fff;
+}
+
+.profile-buttons button.active {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border-color: #3b82f6;
+  color: white;
+  box-shadow: 0 0 15px rgba(59,130,246,0.35);
+  transform: translateY(-2px);
+}
+
+.profile-buttons button:active {
+  transform: scale(0.98);
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.project-card{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:20px;
+    transition:.3s;
+}
+
+.project-card:hover{
+    transform:translateY(-5px);
+    border-color:#4F8CFF;
+}
+
+.project-card h4{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.project-card p{
+    color:#bdbdbd;
+    line-height:1.6;
+    margin-bottom:18px;
+}
+
+.tech-stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.tech-stack span{
+    background:#1f2937;
+    color:#55d8ff;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.difficulty{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.beginner{
+    background:#0d3b2a;
+    color:#22c55e;
+}
+
+.intermediate{
+    background:#4a3500;
+    color:#facc15;
+}
+
+.advanced{
+    background:#4b1120;
+    color:#ef4444;
+}

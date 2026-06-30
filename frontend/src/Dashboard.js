@@ -1,8 +1,6 @@
 import React from "react";
 import "./Dashboard.css";
 import {
-  FaHome,
-  FaUserCircle,
   FaThLarge,
   FaFileAlt,
   FaRobot,
@@ -11,6 +9,9 @@ import {
   FaMapSigns,
   FaSlidersH
 } from "react-icons/fa";
+
+import { MdAnalytics } from "react-icons/md";
+import { BsChatDotsFill } from "react-icons/bs";
 
 function Dashboard({ onNavigate }) {
   return (
@@ -75,9 +76,9 @@ function Dashboard({ onNavigate }) {
             <FaMapSigns className="card-icon icon-cyan" />
           </div>
 
-          <div className="glass-card purple-glow" onClick={() => onNavigate("tailoring")}>
+          <div className="glass-card purple-glow" onClick={() => onNavigate("SRSGenerator")}>
             <div className="card-info">
-              <span className="title-purple">SMART RESUME JOB TAILORING SYSTEM</span>
+              <span className="title-purple">AI SRS GENERATOR</span>
             </div>
             <FaSlidersH className="card-icon icon-purple" />
           </div>
@@ -87,21 +88,32 @@ function Dashboard({ onNavigate }) {
 
       {/* FOOTER */}
       <footer className="bottom-nav">
-        <div className="nav-item" onClick={() => onNavigate("splash")}>
-          <FaHome />
-          <span>Splash</span>
-        </div>
 
-        <div className="nav-item active">
-          <FaThLarge />
-          <span>Dashboard</span>
-        </div>
+  <div
+    className="nav-item"
+    onClick={() => onNavigate("analyzer")}
+  >
+    <MdAnalytics />
+    <span>Analyzer</span>
+  </div>
 
-        <div className="nav-item" onClick={() => onNavigate("profile")}>
-          <FaUserCircle />
-          <span>Profile</span>
-        </div>
-      </footer>
+  <div
+    className="nav-item active"
+    onClick={() => onNavigate("Dashboard")}
+  >
+    <FaThLarge />
+    <span>Dashboard</span>
+  </div>
+
+  <div
+    className="nav-item"
+    onClick={() => onNavigate("Chatbot")}
+  >
+    <BsChatDotsFill />
+    <span>Chat</span>
+  </div>
+
+</footer>
     </div>
   );
 }

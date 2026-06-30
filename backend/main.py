@@ -68,6 +68,19 @@ class ResumeData(BaseModel):
     hobbies: str
     languages: str
 
+class SRSData(BaseModel):
+    project_title: str
+    introduction: str
+    objectives: list[str]
+    scope: str
+    functional_requirements: list[str]
+    non_functional_requirements: list[str]
+    user_roles: list[str]
+    modules: list[str]
+    database_tables: list[str]
+    tech_stack: dict
+    timeline: list
+
 
 # Helper function to remove temp files after response is sent
 def remove_file(path: str):
@@ -339,13 +352,205 @@ def generate_word(data: ResumeData, background_tasks: BackgroundTasks):
         if os.path.exists(word_path):
             os.remove(word_path)
         raise HTTPException(status_code=500, detail=f"Word Generation Error: {str(e)}")
+class SRSRequest(BaseModel):
+    project_title: str
+    project_type: str
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)
+@app.post("/generate-srs")
+async def generate_srs(data: SRSRequest):
 
-# இந்த கோடை உங்கள் main.py-ல் எண்ட்பாயிண்ட்டுகள் இருக்கும் பகுதியில் சேர்க்கவும்
+    prompt = f"""
+You are an expert Software Architect.
+
+Generate a complete Software Requirements Specification (SRS).
+
+Project Title:
+{data.project_title}
+
+Project Type:
+{data.project_type}
+
+Return ONLY valid JSON.
+
+Structure:
+
+{{
+"project_title":"",
+"introduction":"",
+"objectives":["","",""],
+"scope":"",
+"functional_requirements":["","",""],
+"non_functional_requirements":["","",""],
+"user_roles":["","",""],
+"modules":["","",""],
+"database_tables":["","",""],
+"tech_stack":{{
+"frontend":"",
+"backend":"",
+"database":"",
+"authentication":"",
+"deployment":""
+}},
+"timeline":[
+{{"week":"Week 1","task":""}},
+{{"week":"Week 2","task":""}},
+{{"week":"Week 3","task":""}},
+{{"week":"Week 4","task":""}},
+{{"week":"Week 5","task":""}},
+{{"week":"Week 6","task":""}}
+]
+}}
+
+Return JSON only.
+"""
+
+    try:
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.5
+            )
+        )
+
+        text = response.text.strip()
+
+        if text.startswith("```json"):
+            text = text.replace("```json", "").replace("```", "").strip()
+        elif text.startswith("```"):
+            text = text.replace("```", "").strip()
+
+        import json
+
+        return json.loads(text)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/download-srs-docx")
+def download_srs_docx(data:SRSData,background_tasks:BackgroundTasks):
+
+    filename=f"{data.project_title.replace(' ','_')}.docx"
+
+    docx_path=os.path.join(TEMP_DIR,filename)
+
+    doc=Document()
+
+    doc.add_heading(data.project_title,1)
+
+    def section(title,content):
+
+        doc.add_heading(title,2)
+
+        if isinstance(content,list):
+
+            for item in content:
+                doc.add_paragraph(item,style="List Bullet")
+
+        elif isinstance(content,dict):
+
+            for k,v in content.items():
+                doc.add_paragraph(f"{k.title()} : {v}")
+
+        else:
+
+            doc.add_paragraph(str(content))
+
+    section("Introduction",data.introduction)
+    section("Objectives",data.objectives)
+    section("Scope",data.scope)
+    section("Functional Requirements",data.functional_requirements)
+    section("Non Functional Requirements",data.non_functional_requirements)
+    section("User Roles",data.user_roles)
+    section("Modules",data.modules)
+    section("Database Tables",data.database_tables)
+    section("Tech Stack",data.tech_stack)
+
+    doc.add_heading("Development Timeline",2)
+
+    for item in data.timeline:
+        doc.add_paragraph(
+            f"{item['week']} : {item['task']}"
+        )
+
+    doc.save(docx_path)
+
+    background_tasks.add_task(remove_file,docx_path)
+
+    return FileResponse(
+        docx_path,
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        filename=filename
+    )
+
+@app.post("/download-srs-pdf")
+def download_srs_pdf(data: SRSData, background_tasks: BackgroundTasks):
+
+    filename = f"{data.project_title.replace(' ','_')}.pdf"
+
+    pdf_path = os.path.join(TEMP_DIR, filename)
+
+    doc = SimpleDocTemplate(pdf_path, pagesize=letter)
+
+    styles = getSampleStyleSheet()
+
+    story = []
+
+    story.append(Paragraph(f"<b>{data.project_title}</b>", styles["Title"]))
+    story.append(Spacer(1,12))
+
+    def section(title, content):
+
+        story.append(Paragraph(f"<b>{title}</b>", styles["Heading2"]))
+        story.append(Spacer(1,5))
+
+        if isinstance(content,list):
+
+            for item in content:
+                story.append(Paragraph(f"• {item}", styles["BodyText"]))
+
+        elif isinstance(content,dict):
+
+            for k,v in content.items():
+                story.append(Paragraph(f"<b>{k.title()}</b>: {v}", styles["BodyText"]))
+
+        else:
+
+            story.append(Paragraph(str(content), styles["BodyText"]))
+
+        story.append(Spacer(1,10))
+
+    section("Introduction",data.introduction)
+    section("Objectives",data.objectives)
+    section("Scope",data.scope)
+    section("Functional Requirements",data.functional_requirements)
+    section("Non Functional Requirements",data.non_functional_requirements)
+    section("User Roles",data.user_roles)
+    section("Modules",data.modules)
+    section("Database Tables",data.database_tables)
+    section("Tech Stack",data.tech_stack)
+
+    story.append(Paragraph("<b>Development Timeline</b>",styles["Heading2"]))
+
+    for item in data.timeline:
+        story.append(
+            Paragraph(
+                f"{item['week']} : {item['task']}",
+                styles["BodyText"]
+            )
+        )
+
+    doc.build(story)
+
+    background_tasks.add_task(remove_file,pdf_path)
+
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename=filename
+    )
 
 @app.get("/api/roles")
 def get_roles():
@@ -363,3 +568,7 @@ def get_questions(role: str = None):
             "How do you handle CORS in backend?"
         ]
     }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)

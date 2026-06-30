@@ -6,6 +6,7 @@ import Chatbot from "./ChatAssistant";
 import ResumeMaker from "./ResumeMaker";
 import InterviewAssistant from "./InterviewAssistant";
 import Roadmap from "./Roadmap";
+import SRSGenerator from "./SRSGenerator";
 
 function App() {
   const [screen, setScreen] = useState("Splash");
@@ -34,6 +35,9 @@ function App() {
             if (featureId === "roadmap") {
               setScreen("roadmap");
             }
+            if (featureId === "SRSGenerator") {
+              setScreen("SRSGenerator");
+            }
           }}
         />
       )}
@@ -55,6 +59,9 @@ function App() {
       )}
       {screen === "roadmap" && (
         <Roadmap />
+      )}
+      {screen === "SRSGenerator" && (
+        <SRSGenerator />
       )}
     </>
   );
