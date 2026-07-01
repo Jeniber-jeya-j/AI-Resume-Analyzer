@@ -5,7 +5,6 @@ import {
   FaFilePdf, FaFileWord, FaEnvelope, FaPhone, FaPlus, FaTrash,
   FaAward, FaCertificate, FaRunning, FaHeart, FaLanguage
 } from "react-icons/fa";
-import { jsPDF } from "jspdf";
 
 const API_URL = "https://ai-resume-analyzer-f5i9.onrender.com";
 
