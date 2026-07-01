@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatAssistant.css";
-import { FaArrowLeft, FaPaperPlane, FaRobot, FaUser, FaSpinner } from "react-icons/fa";
+import {FaPaperPlane, FaRobot, FaUser, FaSpinner } from "react-icons/fa";
 
 function ChatAssistant({ onNavigate }) {
   const [messages, setMessages] = useState([

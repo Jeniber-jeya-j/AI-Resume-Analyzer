@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaDownload, FaCheckCircle, FaTimesCircle, FaRocket } from "react-icons/fa";
+import {FaCheckCircle, FaTimesCircle,} from "react-icons/fa";
 import "./Roadmap.css";
 
 function Roadmap() {

@@ -1,9 +1,4 @@
 import { useState, useEffect} from "react";
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,
-  ResponsiveContainer, RadarChart, Radar, PolarGrid,
-  PolarAngleAxis, PolarRadiusAxis, Cell
-} from "recharts";
 
 /* ═══════════════════════════════════════════════════════════
    DESIGN TOKENS & GLOBAL STYLES
@@ -450,41 +445,6 @@ body {
   margin: 0 auto;
 }
 `;
-
-/* ═══════════════════════════════════════════════════════════
-   LIVE CLOCK
-═══════════════════════════════════════════════════════════ */
-function LiveClock() {
-  const [t, setT] = useState(new Date());
-  useEffect(() => {
-    const id = setInterval(() => setT(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const hh = t.getHours().toString().padStart(2, "0");
-  const mm = t.getMinutes().toString().padStart(2, "0");
-  const ap = t.getHours() >= 12 ? "PM" : "AM";
-  return <span>{hh}:{mm} {ap}</span>;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   CUSTOM TOOLTIP
-═══════════════════════════════════════════════════════════ */
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div style={{
-        background: "#0b1120", border: "1px solid rgba(255,255,255,0.09)",
-        borderRadius: 10, padding: "10px 14px",
-        fontFamily: "'Space Mono', monospace", fontSize: 11, color: "#93c5fd",
-      }}>
-        <div style={{ color: "#7b92b8", marginBottom: 3, fontSize: 10 }}>{label}</div>
-        <div style={{ fontWeight: 700 }}>{payload[0].value}% match</div>
-      </div>
-    );
-  }
-  return null;
-};
-
 /* ═══════════════════════════════════════════════════════════
    SVG CIRCULAR PROGRESS (replaces react-circular-progressbar)
 ═══════════════════════════════════════════════════════════ */

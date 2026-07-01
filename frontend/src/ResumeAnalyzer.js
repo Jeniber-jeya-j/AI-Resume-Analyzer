@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ResumeAnalyzer.css";
-import { FaCloudUploadAlt, FaArrowLeft, FaFilePdf, FaSpinner, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import { FaCloudUploadAlt, FaFilePdf, FaSpinner, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 
 function Analyzer({ onNavigate }) {
   const [file, setFile] = useState(null);
