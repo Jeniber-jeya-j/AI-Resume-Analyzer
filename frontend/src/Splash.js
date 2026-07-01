@@ -445,44 +445,6 @@ body {
   margin: 0 auto;
 }
 `;
-/* ═══════════════════════════════════════════════════════════
-   SVG CIRCULAR PROGRESS (replaces react-circular-progressbar)
-═══════════════════════════════════════════════════════════ */
-function CircularProgress({ value, color, trailColor = "rgba(255,255,255,0.06)" }) {
-  const r = 58;
-  const cx = 70; const cy = 70;
-  const circ = 2 * Math.PI * r;
-  const progress = circ - (value / 100) * circ;
-  return (
-    <svg className="ats-ring-svg" viewBox="0 0 140 140">
-      <defs>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke={trailColor} strokeWidth="8"/>
-      <circle
-        cx={cx} cy={cy} r={r} fill="none"
-        stroke={color} strokeWidth="8"
-        strokeLinecap="round"
-        strokeDasharray={circ}
-        strokeDashoffset={progress}
-        transform={`rotate(-90 ${cx} ${cy})`}
-        filter="url(#glow)"
-        style={{ transition: "stroke-dashoffset 1.2s ease" }}
-      />
-      <text x={cx} y={cy - 6} textAnchor="middle"
-        fill="#eef4ff" fontSize="20" fontFamily="'Syne', sans-serif" fontWeight="800">
-        {value}%
-      </text>
-      <text x={cx} y={cy + 14} textAnchor="middle"
-        fill="#3d4f6e" fontSize="10" fontFamily="'Space Mono', monospace">
-        ATS SCORE
-      </text>
-    </svg>
-  );
-}
 
 /* ═══════════════════════════════════════════════════════════
    SPLASH SCREEN

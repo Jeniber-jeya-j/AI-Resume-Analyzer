@@ -5,14 +5,6 @@ import "./Roadmap.css";
 function Roadmap() {
   const [targetRole, setTargetRole] = useState("Full Stack Developer");
   const [currentProfile, setCurrentProfile] = useState("Student");
-  const timeline = [
-    { month: "Month 1", tasks: ["HTML", "CSS", "Git Basics"] },
-    { month: "Month 2", tasks: ["JavaScript"] },
-    { month: "Month 3", tasks: ["React"] },
-    { month: "Month 4", tasks: ["Node.js"] },
-    { month: "Month 5", tasks: ["MongoDB"] },
-    { month: "Month 6", tasks: ["Deploy Projects & Ready"] },
-  ];
   const [showRoadmap, setShowRoadmap] = useState(false);
 const [loading, setLoading] = useState(false);
 
