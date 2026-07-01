@@ -93,11 +93,10 @@ html, body, #root, .App {
     background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.2); /* லேசான நியான் பார்டர் */
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.06); /* க்ளோவ் எஃபெக்ட் */
+    border: 1px solid rgba(0, 229, 255, 0.2); 
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.06);
 }
 
-/* வெல்கம் கார்டின் டாப் நியான் லைன் எஃபெக்ட் */
 .welcome-glow-line {
     position: absolute;
     top: 0;
@@ -180,13 +179,13 @@ html, body, #root, .App {
 .icon-cyan { color: #00E5FF; }
 
 .cyan-glow:hover {
-    transform: translateY(-6px) scale(1.02); /* கார்டு லைட்டாக மேலே ஏறி பெரிதாகும் */
+    transform: translateY(-6px) scale(1.02); 
     border-color: rgba(0, 229, 255, 0.6);
     background: rgba(0, 229, 255, 0.06);
     box-shadow: 0 12px 25px rgba(0, 229, 255, 0.25);
 }
 .cyan-glow:hover .card-icon {
-    transform: scale(1.15); /* ஹோவர் செய்யும் போது ஐகான் மட்டும் தனியாகப் பெரிதாகும் */
+    transform: scale(1.15); 
     filter: drop-shadow(0 0 8px #00E5FF);
 }
 
@@ -257,10 +256,10 @@ html, body, #root, .App {
 
 /* Hover effect for non-active/active items */
 .nav-item:hover {
-    color: #00E5FF; /* ஹோவர் பண்ணும்போது சியான் நிறத்திற்கு மாறும் */
-    transform: translateY(-3px); /* லேசாக மேல் நோக்கி எழும்பும் */
+    color: #00E5FF; 
+    transform: translateY(-3px); 
 }
 
 .nav-item:hover svg {
-    transform: scale(1.1); /* ஐகான் லேசாகப் பெரிதாகும் */
+    transform: scale(1.1); 
 }

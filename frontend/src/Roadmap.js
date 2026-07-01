@@ -294,7 +294,6 @@ const currentRoadmap = roadmapData[targetRole];
     </div>
 
       {/* Profile & Target Selection */}
-      {/* Current Profile */}
 <div className="grid-cards">
   <div className="card">
     <h3>Current Profile</h3>

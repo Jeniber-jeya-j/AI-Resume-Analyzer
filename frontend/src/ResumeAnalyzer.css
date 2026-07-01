@@ -340,7 +340,7 @@
     font-size: 11px;
     color: #cbd5e1;
     line-height: 1.6;
-    white-space: pre-line; /* மார்க்-டவுன் வரிகளை சரியாகக் காட்டும் */
+    white-space: pre-line; 
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

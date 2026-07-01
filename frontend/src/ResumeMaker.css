@@ -3,26 +3,24 @@
   background-color: #03070c;
   color: #ffffff;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  height: 100vh;            /* முழு ஸ்கிரீன் உயரத்தையும் எடுத்துக்கொள்ளும் */
+  height: 100vh;            
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden;         /* மெயின் ஸ்கிரீனில் டபுள் ஸ்க்ரோல் வருவதைத் தடுக்கும் */
+  overflow: hidden;         
 }
 
-/* 2. ஸ்க்ரோல் கன்டெய்னர் - இதைத்தான் நாம் ஸ்க்ரோல் செய்ய வைக்க வேண்டும் (முக்கியமான பகுதி!) */
 .scroll-container {
   width: 100%;
   max-width: 600px;
   margin-top: 20px;
-  flex: 1;                  /* மீதமுள்ள அனைத்து உயரத்தையும் எடுத்துக்கொள்ளும் */
-  overflow-y: auto;         /* கன்டென்ட் அதிகமாகும்போது செங்குத்தாக ஸ்க்ரோல் பாரை கொண்டு வரும் */
-  padding-right: 8px;       /* ஸ்க்ரோல் பார் இன்புட்களை மறைக்காமல் இருக்க சிறிய கேப் */
+  flex: 1;                  
+  overflow-y: auto;         
+  padding-right: 8px;    
 }
 
-/* 3. ஸ்க்ரோல் பார் பார்க்க அழகாக இருக்க சில கஸ்டம் ஸ்டைல் (Optional) */
 .scroll-container::-webkit-scrollbar {
   width: 6px;
 }
@@ -33,14 +31,14 @@
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 229, 255, 0.3); /* சியான் நிற மெல்லிய ஸ்க்ரோல் பார் */
+  background: rgba(0, 229, 255, 0.3); 
   border-radius: 10px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
   background: #00E5FF;
 }
-/* --- 2. ஹெடர் ஸ்டைல் (Header Section) --- */
+
 .maker-header h2 {
   font-size: 24px;
   font-weight: 800;
@@ -52,7 +50,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* --- 3. கிளாஸ் கார்டு (Form Container) --- */
 .glass-card-maker {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
@@ -70,11 +67,9 @@
   margin-bottom: 20px;
 }
 
-/* கலர் டெக்ஸ்ட் கிளாஸ்கள் */
 .cyan-text { color: #00E5FF; }
 .purple-text { color: #FF4FD8; }
 
-/* --- 4. இன்புட் குரூப் மற்றும் லேபிள்கள் (Inputs & Labels) --- */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -100,15 +95,14 @@
 }
 
 .input-icon {
-  color: #00E5FF; /* ஐகான்களுக்கு சியான் நிறம் */
+  color: #00E5FF; 
 }
 
-/* சாதாரண மற்றும் டைனமிக் இன்புட் பாக்ஸ்கள் (Summary, Name, etc.) */
 .input-group input, 
 .input-group textarea,
 .dynamic-input-row textarea, 
 .dynamic-input-row input {
-  background-color: #11141a; /* நீங்கள் கேட்டபடி Summary பாக்ஸ் போன்ற டார்க் நிறம் */
+  background-color: #11141a; 
   color: #ffffff;
   border: 1px solid #222834;
   padding: 12px;
@@ -122,7 +116,6 @@
   resize: vertical;
 }
 
-/* போக்கஸ் செய்யும்போது மாறும் ஸ்டைல் (Focus State) */
 .input-group input:focus, 
 .input-group textarea:focus,
 .dynamic-input-row textarea:focus, 
@@ -131,13 +124,11 @@
   box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
 }
 
-/* பிளேஸ்ஹோல்டர் நிறம் */
 ::placeholder {
   color: #4a5568;
   opacity: 0.8;
 }
 
-/* --- 5. டைனமிக் செக்ஷன் & பட்டன்கள் (+ மற்றும் Trash) --- */
 .dynamic-section-header {
   display: flex;
   justify-content: space-between;
@@ -146,7 +137,6 @@
   margin-top: 15px;
 }
 
-/* ப்ளஸ் (+) பட்டன் */
 .add-set-btn {
   background: #00E5FF;
   border: none;
@@ -168,7 +158,6 @@
   transform: scale(1.1);
 }
 
-/* டைனமிக் வரிசை (Row Wrapper) */
 .dynamic-input-row {
   display: flex;
   gap: 10px;
@@ -177,7 +166,6 @@
   width: 100%;
 }
 
-/* டிராஷ் / டெலிட் பட்டன் */
 .remove-set-btn {
   background: transparent;
   border: none;
@@ -196,7 +184,6 @@
   box-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
 }
 
-/* --- 6. முதன்மை ஆக்ஷன் பட்டன்கள் (Generate Resume) --- */
 .action-btn {
   width: 100%;
   padding: 14px;
@@ -208,7 +195,6 @@
   transition: all 0.3s ease;
 }
 
-/* ஸ்கிரீன்ஷாட்டில் உள்ள நியான் பிங்க் பட்டன் */
 .neon-purple-btn {
   background: #FF4FD8;
   color: #ffffff;
@@ -221,7 +207,6 @@
   transform: translateY(-2px);
 }
 
-/* --- 7. பிரிவியூ ஸ்கிரீன் ஸ்டைல் (Preview Screen) --- */
 .preview-container {
   width: 100%;
   display: flex;
@@ -260,7 +245,6 @@
   margin-bottom: 15px;
 }
 
-/* டவுன்லோட் பட்டன்கள் குரூப் */
 .download-actions {
   display: flex;
   gap: 15px;

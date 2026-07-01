@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { FaGraduationCap, FaCode, FaUserTie, FaChevronRight, FaChevronDown } from "react-icons/fa";
 import "./InterviewAssistant.css";
-
-// 1. தனி கோப்பில் இருந்து 18 ரோல்களுக்கான கேள்விகளை Import செய்கிறோம்
 import { technicalQuestionsBank } from "./questionsData";
 import {hrQuestions} from "./questionsData";
 import {aptitudeQuestions} from "./questionsData";

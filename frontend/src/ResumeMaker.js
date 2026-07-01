@@ -27,24 +27,20 @@ function ResumeMaker({ onBack }) {
 
   const [preview, setPreview] = useState(false);
 
-  // சாதாரண இன்புட்களை மாற்றுவதற்கு
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // டைனமிக் லிஸ்ட் இன்புட்களை மாற்றுவதற்கு
   const handleDynamicChange = (index, field, value) => {
     const updatedList = [...formData[field]];
     updatedList[index] = value;
     setFormData({ ...formData, [field]: updatedList });
   };
 
-  // புதிய செட் ஆட் செய்ய (+)
   const addField = (field) => {
     setFormData({ ...formData, [field]: [...formData[field], ""] });
   };
 
-  // இருக்கும் செட்டை நீக்க (Trash Icon)
   const removeField = (index, field) => {
     if (formData[field].length > 1) {
       const updatedList = formData[field].filter((_, i) => i !== index);

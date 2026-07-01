@@ -13,7 +13,6 @@ function ChatAssistant({ onNavigate }) {
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
 
-  // ஆட்டோமேட்டிக்கா சாட் கீழே ஸ்க்ரோல் ஆக
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -25,7 +24,6 @@ function ChatAssistant({ onNavigate }) {
     const userMessage = input.trim();
     setInput("");
     
-    // User மெசேஜை சாட்டில் சேர்க்கிறது
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
     setLoading(true);
 
