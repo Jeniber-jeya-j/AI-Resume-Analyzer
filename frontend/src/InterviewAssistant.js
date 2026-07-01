@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { FaGraduationCap, FaCode, FaUserTie, FaChevronRight, FaChevronDown } from "react-icons/fa";
+import { FaArrowLeft, FaGraduationCap, FaCode, FaUserTie, FaChevronRight, FaChevronDown } from "react-icons/fa";
 import "./InterviewAssistant.css";
 import { technicalQuestionsBank } from "./questionsData";
 import {hrQuestions} from "./questionsData";
 import {aptitudeQuestions} from "./questionsData";
 
-function InterviewAssistant() {
+function InterviewAssistant({ onBack }) {
   const roles = [
     "Data Scientist", 
     "Full Stack Developer", 
@@ -51,6 +51,9 @@ function InterviewAssistant() {
     <div className="assistant-container">
       {/* 1. Main Header */}
       <header className="assistant-header">
+        <button className="back-btn" onClick={() => onBack()}>
+                 <FaArrowLeft /> 
+                 </button>
         <h2><span className="text-gradient-pink">AI INTERVIEW PREPARATION ASSISTANT</span></h2>
       </header>
 

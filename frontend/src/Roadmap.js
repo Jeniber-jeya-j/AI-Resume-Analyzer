@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {FaCheckCircle, FaTimesCircle,} from "react-icons/fa";
+import {FaCheckCircle, FaTimesCircle, FaArrowLeft,} from "react-icons/fa";
 import "./Roadmap.css";
 
-function Roadmap() {
+function Roadmap({ onBack }) {
   const [targetRole, setTargetRole] = useState("Full Stack Developer");
   const [currentProfile, setCurrentProfile] = useState("Student");
   const [showRoadmap, setShowRoadmap] = useState(false);
@@ -284,6 +284,9 @@ const currentRoadmap = roadmapData[targetRole];
   return (
     <div className="roadmap-container">
       <header className="roadmap-header">
+        <button className="back-btn" onClick={() => onBack()}>
+          <FaArrowLeft /> 
+        </button>
         <h2><span className="text-gradient-pink">AI Career Roadmap</span></h2>
       </header>
 

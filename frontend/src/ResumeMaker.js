@@ -3,7 +3,7 @@ import "./ResumeMaker.css";
 import { 
   FaUser, FaBriefcase, FaGraduationCap, FaCode, 
   FaFilePdf, FaFileWord, FaEnvelope, FaPhone, FaPlus, FaTrash,
-  FaAward, FaCertificate, FaRunning, FaHeart, FaLanguage
+  FaAward, FaCertificate, FaRunning, FaHeart, FaLanguage, FaArrowLeft
 } from "react-icons/fa";
 
 const API_URL = "https://ai-resume-analyzer-f5i9.onrender.com";
@@ -114,6 +114,9 @@ function ResumeMaker({ onBack }) {
     <div className="resume-maker">
       {/* HEADER */}
       <header className="maker-header">
+        <button className="back-btn" onClick={() => onBack()}>
+          <FaArrowLeft /> 
+        </button>
         <h2>AI RESUME BUILDER</h2>
       </header>
 

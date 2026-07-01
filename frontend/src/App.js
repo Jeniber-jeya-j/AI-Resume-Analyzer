@@ -43,26 +43,28 @@ function App() {
       )}
 
       {screen === "analyzer" && (
-        <ResumeAnalyzer />
-      )}
+  <ResumeAnalyzer onBack={() => setScreen("Dashboard")} />
+)}
 
-      {screen === "Chatbot" && (
-        <Chatbot />
-      )}
+{screen === "Chatbot" && (
+  <Chatbot onBack={() => setScreen("Dashboard")} />
+)}
 
-      {screen === "ResumeMaker" && (
-        <ResumeMaker />
-      )}
+{screen === "ResumeMaker" && (
+  <ResumeMaker onBack={() => setScreen("Dashboard")} />
+)}
 
-      {screen === "interview" && (
-        <InterviewAssistant />
-      )}
-      {screen === "roadmap" && (
-        <Roadmap />
-      )}
-      {screen === "SRSGenerator" && (
-        <SRSGenerator />
-      )}
+{screen === "interview" && (
+  <InterviewAssistant onBack={() => setScreen("Dashboard")} />
+)}
+
+{screen === "roadmap" && (
+  <Roadmap onBack={() => setScreen("Dashboard")} />
+)}
+
+{screen === "SRSGenerator" && (
+  <SRSGenerator onBack={() => setScreen("Dashboard")} />
+)}
     </>
   );
 }

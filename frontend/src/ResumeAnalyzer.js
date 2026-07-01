@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./ResumeAnalyzer.css";
-import { FaCloudUploadAlt, FaFilePdf, FaSpinner, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import { FaArrowLeft, FaCloudUploadAlt, FaFilePdf, FaSpinner, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import API_URL from "./config";
 
 const API_BASE_URL = API_URL;
 
-function Analyzer({ onNavigate }) {
+function Analyzer({ onBack }) {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("No file chosen");
   const [jobDescription, setJobDescription] = useState("");
@@ -74,6 +74,9 @@ function Analyzer({ onNavigate }) {
       
       {/* HEADER */}
       <header className="analyzer-header">
+        <button className="back-btn" onClick={() => onBack()}>
+          <FaArrowLeft /> 
+        </button>
         <h2>RESUME <span className="text-gradient-cyan">ANALYZER</span></h2>
       </header>
 

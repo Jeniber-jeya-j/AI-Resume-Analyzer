@@ -5,11 +5,12 @@ import {
   FaFilePdf,
   FaFileWord,
   FaSpinner,
+  FaArrowLeft,
 } from "react-icons/fa";
 import "./SRSGenerator.css";
 import API_URL from "./config";
 
-function SRSGenerator() {
+function SRSGenerator({ onBack }) {
   const [projectTitle, setProjectTitle] = useState("");
   const [projectType, setProjectType] = useState("Web Application");
   const [loading, setLoading] = useState(false);
@@ -151,6 +152,9 @@ setSrs(data);
     <div className="srs-container">
 
       <header className="srs-header">
+        <button className="back-btn" onClick={() => onBack()}>
+                 <FaArrowLeft /> 
+                 </button>
         <h2><FaRobot /><span className="text-gradient-pink"> AI SRS Generator</span></h2>
         </header>
         <div className="grid-cards">

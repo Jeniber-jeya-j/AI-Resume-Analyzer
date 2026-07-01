@@ -10,8 +10,8 @@
 }
 .roadmap-container { padding: 20px; color: var(--text-main); }
 .roadmap-header {  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 600;
   letter-spacing: 1px;
   background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
   -webkit-background-clip: text;
@@ -190,4 +190,42 @@
 .advanced{
     background:#4b1120;
     color:#ef4444;
+}
+.page-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.back-btn {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+
+  background: transparent !important;
+  border: none !important;
+  outline: none;
+
+  color: #00f2fe;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-shadow:
+    0 0 5px #00f2fe,
+    0 0 10px #00f2fe,
+    0 0 20px #00f2fe;
+
+  transition: all .3s ease;
+}
+
+.back-btn:hover {
+  transform: translateX(-5px);
+  text-shadow:
+    0 0 10px #00f2fe,
+    0 0 20px #00f2fe,
+    0 0 35px #00f2fe;
 }

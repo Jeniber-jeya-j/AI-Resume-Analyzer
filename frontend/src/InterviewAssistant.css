@@ -287,3 +287,26 @@ html, body, #root, .App {
 .dropdown-item:hover {
   background-color: #1e293b;
 }
+.page-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.back-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  background:#1f2937;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.back-btn:hover{
+  background:#374151;
+}

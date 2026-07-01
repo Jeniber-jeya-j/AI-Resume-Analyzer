@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatAssistant.css";
-import {FaPaperPlane, FaRobot, FaUser, FaSpinner } from "react-icons/fa";
+import {FaArrowLeft, FaPaperPlane, FaRobot, FaUser, FaSpinner } from "react-icons/fa";
 import API_URL from "./config";
 
 const API_BASE_URL = API_URL;
 
-function ChatAssistant({ onNavigate }) {
+function ChatAssistant({ onBack }) {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hello! I am your AI Career Assistant. How can I help you with your resume or career goals today?" }
   ]);
@@ -53,6 +53,9 @@ function ChatAssistant({ onNavigate }) {
     <div className="chat-page">
       {/* HEADER */}
       <header className="chat-header">
+          <button className="back-btn" onClick={onBack}>
+    <FaArrowLeft />
+  </button>
         <h2>AI <span className="text-gradient-cyan">CAREER ASSISTANT</span></h2>
       </header>
 
