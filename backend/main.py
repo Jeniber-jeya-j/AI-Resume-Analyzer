@@ -42,7 +42,9 @@ app.add_middleware(
 )
 
 # Gemini Client Initialization
-client = genai.Client()
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
 
 UPLOAD_DIR = "uploads"
 TEMP_DIR = "temp_files"
