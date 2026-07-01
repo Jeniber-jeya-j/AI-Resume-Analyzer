@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatAssistant.css";
 import {FaPaperPlane, FaRobot, FaUser, FaSpinner } from "react-icons/fa";
+import API_URL from "./config";
+
+const API_BASE_URL = API_URL;
 
 function ChatAssistant({ onNavigate }) {
   const [messages, setMessages] = useState([
@@ -27,12 +30,15 @@ function ChatAssistant({ onNavigate }) {
     setLoading(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/Chatbot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage }),
-      });
-
+      const response = await fetch(`${API_BASE_URL}/Chatbot`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    message: userMessage,
+  }),
+});
       if (!response.ok) throw new Error("Network error");
 
       const data = await response.json();

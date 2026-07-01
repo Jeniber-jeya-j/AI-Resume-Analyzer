@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./ResumeAnalyzer.css";
 import { FaCloudUploadAlt, FaFilePdf, FaSpinner, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import API_URL from "./config";
+
+const API_BASE_URL = API_URL;
 
 function Analyzer({ onNavigate }) {
   const [file, setFile] = useState(null);
@@ -48,7 +51,7 @@ function Analyzer({ onNavigate }) {
     formData.append("job_description", jobDescription); 
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/analyze", {
+      const response = await fetch(`${API_BASE_URL}/analyze`, {
         method: "POST",
         body: formData,
       });
@@ -61,8 +64,7 @@ function Analyzer({ onNavigate }) {
       setResult(data); 
     } catch (error) {
       console.error("Error connecting to backend:", error);
-      setErrorMessage("Connection to backend failed! Please ensure that your Uvicorn server is running.");
-    } finally {
+      setErrorMessage("Unable to connect to the server. Please try again later.");    } finally {
       setLoading(false);
     }
   };

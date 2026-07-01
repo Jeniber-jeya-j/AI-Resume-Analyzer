@@ -7,6 +7,7 @@ import {
   FaSpinner,
 } from "react-icons/fa";
 import "./SRSGenerator.css";
+import API_URL from "./config";
 
 function SRSGenerator() {
   const [projectTitle, setProjectTitle] = useState("");
@@ -24,7 +25,7 @@ function SRSGenerator() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/generate-srs", {
+      const response = await fetch(`${API_URL}/generate-srs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +63,7 @@ setSrs(data);
     try {
 
       const response = await fetch(
-        "http://localhost:5000/download-srs-pdf",
+        `${API_URL}/download-srs-pdf`,
         {
           method: "POST",
           headers: {
@@ -110,8 +111,7 @@ setSrs(data);
     try {
 
       const response = await fetch(
-        "http://localhost:5000/download-srs-docx",
-        {
+          `${API_URL}/download-srs-docx`,        {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

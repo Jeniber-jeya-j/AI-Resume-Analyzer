@@ -7,6 +7,8 @@ import {
 } from "react-icons/fa";
 import { jsPDF } from "jspdf";
 
+const API_URL = "https://ai-resume-analyzer-f5i9.onrender.com";
+
 function ResumeMaker({ onBack }) {
   // 1. ஆரம்ப கட்ட டேட்டா வடிவமைப்பு (அனைத்து புதிய ஃபீல்டுகளும் சேர்க்கப்பட்டுள்ளன)
   const [formData, setFormData] = useState({
@@ -52,200 +54,66 @@ function ResumeMaker({ onBack }) {
   };
 
   // 📄 PDF DOWNLOAD FUNCTION
-  const downloadPDF = () => {
-    const doc = new jsPDF();
-    let currentY = 50; 
-    
-    doc.setFillColor(3, 7, 12); // Dark BG
-    doc.rect(0, 0, 210, 297, "F");
-
-    doc.setTextColor(0, 229, 255); // Cyan Title
-    doc.setFontSize(22);
-    doc.text(formData.fullName.toUpperCase() || "YOUR NAME", 20, 25);
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(10);
-    doc.text(`Email: ${formData.email} | Phone: ${formData.phone}`, 20, 35);
-    doc.line(20, 40, 190, 40);
-
-    // Summary Section
-    doc.setTextColor(255, 79, 216); 
-    doc.setFontSize(14);
-    doc.text("PROFESSIONAL SUMMARY", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    doc.text(doc.splitTextToSize(formData.summary || "No summary provided.", 170), 20, currentY);
-    
-    // Experience Section
-    currentY += 25;
-    doc.setTextColor(255, 79, 216);
-    doc.setFontSize(14);
-    doc.text("WORK EXPERIENCE", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    formData.experience.forEach((exp) => {
-      if(exp.trim() !== "") {
-        doc.text(`• ${exp}`, 25, currentY);
-        currentY += 7;
-      }
+  const downloadPDF = async () => {
+  try {
+    const response = await fetch(`${API_URL}/api/resume/download-pdf`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     });
 
-    // Education Section
-    currentY += 15;
-    doc.setTextColor(0, 229, 255); 
-    doc.setFontSize(14);
-    doc.text("EDUCATION", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    formData.education.forEach((edu) => {
-      if(edu.trim() !== "") {
-        doc.text(`• ${edu}`, 25, currentY);
-        currentY += 7;
-      }
-    });
+    const blob = await response.blob();
 
-    // Skills Section (புள்ளிகளாக மாற்றப்பட்டுள்ளது)
-    currentY += 15;
-    doc.setTextColor(0, 229, 255);
-    doc.setFontSize(14);
-    doc.text("SKILLS", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    formData.skills.forEach((skill) => {
-      if(skill.trim() !== "") {
-        doc.text(`• ${skill}`, 25, currentY);
-        currentY += 7;
-      }
-    });
+    const url = window.URL.createObjectURL(blob);
 
-    // Certificates Section
-    currentY += 15;
-    doc.setTextColor(255, 79, 216);
-    doc.setFontSize(14);
-    doc.text("CERTIFICATES", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    formData.certificates.forEach((cert) => {
-      if(cert && cert.trim() !== "") {
-        doc.text(`• ${cert}`, 25, currentY);
-        currentY += 7;
-      }
-    });
-
-    // Achievements Section
-    currentY += 15;
-    doc.setTextColor(255, 79, 216);
-    doc.setFontSize(14);
-    doc.text("ACHIEVEMENTS", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    formData.achievements.forEach((ach) => {
-      if(ach && ach.trim() !== "") {
-        doc.text(`• ${ach}`, 25, currentY);
-        currentY += 7;
-      }
-    });
-
-    // Extra Curricular Section
-    currentY += 15;
-    doc.setTextColor(0, 229, 255);
-    doc.setFontSize(14);
-    doc.text("EXTRA CURRICULAR ACTIVITIES", 20, currentY);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    currentY += 8;
-    formData.extracurricular.forEach((act) => {
-      if(act && act.trim() !== "") {
-        doc.text(`• ${act}`, 25, currentY);
-        currentY += 7;
-      }
-    });
-
-    // Languages Section (புள்ளிகளாக பிரிக்கப்பட்டுள்ளது)
-    if(formData.languages.trim() !== "") {
-      currentY += 15;
-      doc.setTextColor(0, 229, 255);
-      doc.setFontSize(14);
-      doc.text("LANGUAGES", 20, currentY);
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(11);
-      currentY += 8;
-      formData.languages.split(",").forEach((lang) => {
-        if(lang.trim() !== "") {
-          doc.text(`• ${lang.trim()}`, 25, currentY);
-          currentY += 7;
-        }
-      });
-    }
-
-    // Hobbies Section (புள்ளிகளாக பிரிக்கப்பட்டுள்ளது)
-    if(formData.hobbies.trim() !== "") {
-      currentY += 15;
-      doc.setTextColor(255, 79, 216);
-      doc.setFontSize(14);
-      doc.text("HOBBIES", 20, currentY);
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(11);
-      currentY += 8;
-      formData.hobbies.split(",").forEach((hobby) => {
-        if(hobby.trim() !== "") {
-          doc.text(`• ${hobby.trim()}`, 25, currentY);
-          currentY += 7;
-        }
-      });
-    }
-
-    doc.save(`${formData.fullName || "Resume"}.pdf`);
-  };
-
-  // 📝 WORD (DOC) DOWNLOAD FUNCTION
-  const downloadWORD = () => {
-    const expHTML = formData.experience.map(exp => exp ? `<li>${exp}</li>` : '').join('');
-    const eduHTML = formData.education.map(edu => edu ? `<li>${edu}</li>` : '').join('');
-    const skillHTML = formData.skills.map(skill => skill ? `<li>${skill}</li>` : '').join('');
-    const certHTML = formData.certificates.map(cert => cert ? `<li>${cert}</li>` : '').join('');
-    const achHTML = formData.achievements.map(ach => ach ? `<li>${ach}</li>` : '').join('');
-    const extraHTML = formData.extracurricular.map(act => act ? `<li>${act}</li>` : '').join('');
-    
-    // கமாவால் பிரிக்கப்பட்டவற்றை பாயிண்டுகளாக மாற்றுதல்
-    const langHTML = formData.languages.split(',').map(l => l.trim() ? `<li>${l.trim()}</li>` : '').join('');
-    const hobbyHTML = formData.hobbies.split(',').map(h => h.trim() ? `<li>${h.trim()}</li>` : '').join('');
-
-    const htmlContent = `
-      <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-      <head><title>Resume</title><style>body {font-family: Arial; line-height: 1.6;} ul {margin-top:0;}</style></head>
-      <body>
-        <h2>${formData.fullName.toUpperCase()}</h2>
-        <p>Email: ${formData.email} | Phone: ${formData.phone}</p>
-        <hr/>
-        <h3>Professional Summary</h3><p>${formData.summary}</p>
-        <h3>Experience</h3><ul>${expHTML}</ul>
-        <h3>Education</h3><ul>${eduHTML}</ul>
-        <h3>Skills</h3><ul>${skillHTML}</ul>
-        <h3>Certificates</h3><ul>${certHTML}</ul>
-        <h3>Achievements</h3><ul>${achHTML}</ul>
-        <h3>Extra Curricular Activities</h3><ul>${extraHTML}</ul>
-        <h3>Languages</h3><ul>${langHTML}</ul>
-        <h3>Hobbies</h3><ul>${hobbyHTML}</ul>
-      </body>
-      </html>
-    `;
-
-    const blob = new Blob(['\ufeff' + htmlContent], { type: 'application/msword' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `${formData.fullName || "Resume"}.doc`;
+    a.download = `${formData.fullName || "Resume"}.pdf`;
+
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
-  };
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+
+  } catch (err) {
+    console.log(err);
+    alert("PDF Download Failed");
+  }
+};
+
+  // 📝 WORD (DOC) DOWNLOAD FUNCTION
+  const downloadWORD = async () => {
+  try {
+    const response = await fetch(`${API_URL}/api/resume/download-word`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const blob = await response.blob();
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${formData.fullName || "Resume"}.docx`;
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+
+  } catch (err) {
+    console.log(err);
+    alert("Word Download Failed");
+  }
+};
 
   return (
     <div className="resume-maker">
